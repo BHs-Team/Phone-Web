@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Typatone Iframe Example</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("bg.png");
+      background-size: cover;
+      background-position: center;
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    .outer-frame {
+      border: 10px solid #09f;
+      border-radius: 25px;
+      padding: 7px;
+      background-color: black;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 1); /* Black shadow (fully opaque) */
+    }
+
+    .outer-frame.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    iframe {
+      border-radius: 15px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="outer-frame">
+    <iframe src="https://typatone.com" width="320" height="540" frameborder="0" border="0"></iframe>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const outerFrame = document.querySelector('.outer-frame');
+      void outerFrame.offsetWidth;
+      outerFrame.classList.add('loaded');
+    });
+  </script>
+</body>
+</html>
